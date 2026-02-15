@@ -32,7 +32,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
         </Button>
       </div>
 
-      <Card className="overflow-hidden border p-0">
+      <Card className="overflow-hidden border bg-card/90 p-0 shadow-[0_24px_70px_rgba(20,19,18,0.12)]">
         <div className="relative h-72 sm:h-80">
           <Image
             src={profile.heroImage}
@@ -117,7 +117,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
           <h2 className="font-display text-lg font-semibold">Past projects</h2>
           <Badge variant="outline">{profile.projects.length} projects</Badge>
         </div>
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pr-2">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pr-2 scroll-smooth">
           {profile.projects.map((project) => (
             <a
               key={project.id}
@@ -162,7 +162,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
         </div>
       </Card>
 
-      <Card className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+      <Card className="flex flex-col gap-4 border-primary/20 bg-secondary/60 p-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="font-display text-lg font-semibold">Start a sprint</h2>
           <p className="text-sm text-muted-foreground">

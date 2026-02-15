@@ -21,6 +21,8 @@ export default function SwipeView() {
 
   const current = profiles[index];
   const nextProfile = profiles[index + 1];
+  const progress = Math.min(index + 1, profiles.length);
+  const progressPercent = (progress / profiles.length) * 100;
 
   const handleSwipe = (direction: "left" | "right") => {
     if (!current) return;
@@ -67,8 +69,22 @@ export default function SwipeView() {
               </Card>
             )}
 
-            <Card className="relative z-10 overflow-hidden border p-0">
-              <div className="relative h-60 sm:h-64">
+            <Card className="relative z-10 overflow-hidden border bg-card/90 p-0 shadow-[0_30px_80px_rgba(20,19,18,0.14)]">
+              <div className="flex items-center justify-between px-6 pt-5 text-xs text-muted-foreground">
+                <span>
+                  Profile {progress} of {profiles.length}
+                </span>
+                <span>Swipe to explore</span>
+              </div>
+              <div className="px-6 pt-3">
+                <div className="h-1 rounded-full bg-muted">
+                  <div
+                    className="h-full rounded-full bg-primary"
+                    style={{ width: `${progressPercent}%` }}
+                  />
+                </div>
+              </div>
+              <div className="relative mt-4 h-60 sm:h-64">
                 <Image
                   src={current.heroImage}
                   alt={`${current.name} hero`}
@@ -115,7 +131,7 @@ export default function SwipeView() {
 
                 <div>
                   <p className="text-sm font-medium">Past projects</p>
-                  <div className="mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 pr-2">
+                  <div className="mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 pr-2 scroll-smooth">
                     {current.projects.map((project) => (
                       <a
                         key={project.id}
