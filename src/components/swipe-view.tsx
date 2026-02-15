@@ -68,7 +68,7 @@ export default function SwipeView() {
             )}
 
             <Card className="relative z-10 overflow-hidden border p-0">
-              <div className="relative h-52">
+              <div className="relative h-60 sm:h-64">
                 <Image
                   src={current.heroImage}
                   alt={`${current.name} hero`}
@@ -115,11 +115,11 @@ export default function SwipeView() {
 
                 <div>
                   <p className="text-sm font-medium">Past projects</p>
-                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                  <div className="mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 pr-2">
                     {current.projects.map((project) => (
                       <a
                         key={project.id}
-                        className="group rounded-2xl border border-border/70 bg-background/80 p-3 transition hover:border-foreground/20"
+                        className="group min-w-[220px] snap-start rounded-2xl border border-border/70 bg-background/80 p-3 transition hover:border-foreground/20"
                         href={project.link.url}
                         target="_blank"
                         rel="noreferrer"

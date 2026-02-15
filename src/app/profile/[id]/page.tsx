@@ -33,7 +33,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
       </div>
 
       <Card className="overflow-hidden border p-0">
-        <div className="relative h-60 sm:h-72">
+        <div className="relative h-72 sm:h-80">
           <Image
             src={profile.heroImage}
             alt={`${profile.name} hero`}
@@ -117,11 +117,11 @@ export default function ProfileDetailPage({ params }: PageProps) {
           <h2 className="text-lg font-semibold">Past projects</h2>
           <Badge variant="outline">{profile.projects.length} projects</Badge>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pr-2">
           {profile.projects.map((project) => (
             <a
               key={project.id}
-              className="group rounded-2xl border border-border/70 bg-background/70 p-4 transition hover:border-foreground/20"
+              className="group min-w-[260px] snap-start rounded-2xl border border-border/70 bg-background/70 p-4 transition hover:border-foreground/20"
               href={project.link.url}
               target="_blank"
               rel="noreferrer"
