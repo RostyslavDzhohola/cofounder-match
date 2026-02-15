@@ -1,165 +1,278 @@
-export type PortfolioLinks = {
-  github?: string;
-  instagram?: string;
-  website?: string;
+export type ProfileLink = {
+  label: string;
+  url: string;
+};
+
+export type ProjectMetric = {
+  label: string;
+  value: string;
 };
 
 export type ProjectHighlight = {
+  id: string;
   name: string;
   description: string;
+  image: string;
+  link: ProfileLink;
+  metrics?: ProjectMetric[];
 };
 
 export type Profile = {
   id: string;
   name: string;
   role: string;
-  skills: string[];
+  headline: string;
+  availability: string;
   location: string;
   timezone: string;
   school: string;
   highlights: string[];
   wantsToBuild: string;
-  portfolio: PortfolioLinks;
+  links: ProfileLink[];
+  avatar: string;
+  heroImage: string;
   projects: ProjectHighlight[];
 };
 
 export const profiles: Profile[] = [
   {
-    id: "nina-patel",
-    name: "Nina Patel",
+    id: "aria-lane",
+    name: "Aria Lane",
     role: "Product Designer",
-    skills: ["Design systems", "Figma", "UX research", "Brand"],
-    location: "Austin, TX",
-    timezone: "UTC-6 (CST)",
-    school: "UT Austin — BFA Design",
+    headline: "Systems-first designer who turns fuzzy ideas into crisp flows.",
+    availability: "Open to a 7-day sprint",
+    location: "San Francisco, CA",
+    timezone: "UTC-8 (PST)",
+    school: "RISD — Digital + Product",
     highlights: [
-      "Led redesign that lifted activation +18%",
-      "Ships tight prototypes in 48 hours",
-      "Mentors early-stage founders",
+      "Led redesign that lifted activation +22%",
+      "Builds design systems that survive real scale",
+      "Pairs taste with rapid prototyping",
     ],
     wantsToBuild:
-      "A guided AI concierge for local services that feels human and trustworthy.",
-    portfolio: {
-      github: "https://github.com/ninap",
-      instagram: "https://instagram.com/nina.designs",
-      website: "https://ninapatel.design",
-    },
-    projects: [
+      "A founder-friendly design copilot for validating positioning in days, not weeks.",
+    links: [
       {
-        name: "FlowPilot",
-        description: "SaaS onboarding toolkit with modular flows + analytics.",
+        label: "Portfolio",
+        url: "https://arialane.design",
       },
       {
-        name: "Haven Health",
-        description: "Telehealth branding + patient portal UX.",
+        label: "Figma",
+        url: "https://www.figma.com/community/file/1234567890",
+      },
+      {
+        label: "Framer",
+        url: "https://www.framer.com/projects/aria-lane",
+      },
+    ],
+    avatar: "/images/avatars/aria-lane.svg",
+    heroImage: "/images/heroes/aria-lane.svg",
+    projects: [
+      {
+        id: "nimbus-design-system",
+        name: "Nimbus Design System",
+        description: "Component library with 40+ tokens for B2B SaaS teams.",
+        image: "/images/projects/aria-nimbus.svg",
+        link: {
+          label: "Figma",
+          url: "https://www.figma.com/community/file/1100110011",
+        },
+      },
+      {
+        id: "signal-onboarding",
+        name: "Signal Onboarding",
+        description: "Conversion-focused onboarding flow with crisp product copy.",
+        image: "/images/projects/aria-signal.svg",
+        link: {
+          label: "Framer",
+          url: "https://www.framer.com/projects/signal-onboarding",
+        },
+      },
+      {
+        id: "atlas-mobile",
+        name: "Atlas Mobile",
+        description: "Mobile-first UX concept for local discovery.",
+        image: "/images/projects/aria-atlas.svg",
+        link: {
+          label: "Figma",
+          url: "https://www.figma.com/community/file/2200220022",
+        },
+      },
+      {
+        id: "flowcase-portfolio",
+        name: "Flowcase Portfolio",
+        description: "Case study storytelling for product launches.",
+        image: "/images/projects/aria-flowcase.svg",
+        link: {
+          label: "Portfolio",
+          url: "https://arialane.design/flowcase",
+        },
       },
     ],
   },
   {
-    id: "marcus-lee",
-    name: "Marcus Lee",
-    role: "Full-Stack Builder",
-    skills: ["Next.js", "TypeScript", "Supabase", "Stripe"],
-    location: "Toronto, CA",
+    id: "noah-kim",
+    name: "Noah Kim",
+    role: "Builder / Developer",
+    headline: "Full-stack builder who ships reliable MVPs in public.",
+    availability: "Shipping daily until March",
+    location: "New York, NY",
     timezone: "UTC-5 (EST)",
-    school: "University of Waterloo — CS",
+    school: "Columbia — Computer Science",
     highlights: [
-      "Built 4 revenue-generating apps",
-      "Loves fast MVP sprints",
-      "Open-source maintainer",
+      "Built 6 revenue-positive side projects",
+      "Obsessed with clean infra + fast UX",
+      "Maintains open-source tooling",
     ],
     wantsToBuild:
-      "A co-working dashboard for remote teams with daily accountability loops.",
-    portfolio: {
-      github: "https://github.com/marcuslee",
-      instagram: "https://instagram.com/marcus.codes",
-      website: "https://marcuslee.dev",
-    },
+      "A lightweight operating system for creator-led SaaS teams.",
+    links: [
+      {
+        label: "GitHub",
+        url: "https://github.com/noahkim",
+      },
+      {
+        label: "Website",
+        url: "https://noahkim.dev",
+      },
+      {
+        label: "Stack",
+        url: "https://noahkim.dev/stack",
+      },
+    ],
+    avatar: "/images/avatars/noah-kim.svg",
+    heroImage: "/images/heroes/noah-kim.svg",
     projects: [
       {
-        name: "PulseBoard",
-        description: "Remote team check-in app with async standups.",
+        id: "shipboard",
+        name: "Shipboard",
+        description: "Founder dashboard for weekly shipping accountability.",
+        image: "/images/projects/noah-shipboard.svg",
+        link: {
+          label: "GitHub",
+          url: "https://github.com/noahkim/shipboard",
+        },
+      },
+      {
+        id: "pulseops",
+        name: "PulseOps",
+        description: "Ops tracker for sprint goals + live milestones.",
+        image: "/images/projects/noah-pulseops.svg",
+        link: {
+          label: "GitHub",
+          url: "https://github.com/noahkim/pulseops",
+        },
+      },
+      {
+        id: "relaypay",
+        name: "RelayPay",
+        description: "Stripe-powered payouts layer for marketplaces.",
+        image: "/images/projects/noah-relaypay.svg",
+        link: {
+          label: "GitHub",
+          url: "https://github.com/noahkim/relaypay",
+        },
+      },
+      {
+        id: "vectorlab",
+        name: "VectorLab",
+        description: "RAG playground with tunable retrieval pipelines.",
+        image: "/images/projects/noah-vectorlab.svg",
+        link: {
+          label: "GitHub",
+          url: "https://github.com/noahkim/vectorlab",
+        },
       },
     ],
   },
   {
-    id: "sarah-chen",
-    name: "Sarah Chen",
-    role: "Growth + Content",
-    skills: ["Go-to-market", "SEO", "Newsletter", "Community"],
-    location: "London, UK",
-    timezone: "UTC+0 (GMT)",
-    school: "LSE — Marketing",
+    id: "dani-park",
+    name: "Dani Park",
+    role: "Content Creator",
+    headline: "Turns raw product ideas into stories people binge.",
+    availability: "Two creator slots open",
+    location: "Los Angeles, CA",
+    timezone: "UTC-8 (PST)",
+    school: "USC — Media Arts",
     highlights: [
-      "Scaled newsletter to 120k",
-      "Partnerships with 5 accelerators",
-      "Runs community events",
+      "Grew a tech channel from 0 → 180k",
+      "Turns launches into story arcs",
+      "Strong community + newsletter loop",
     ],
     wantsToBuild:
-      "A founder-friendly PR engine that turns milestones into distribution.",
-    portfolio: {
-      github: "https://github.com/sarahgrowth",
-      instagram: "https://instagram.com/sarahgrowth",
-      website: "https://sarahchen.fyi",
-    },
-    projects: [
+      "A creator-first studio for founders to test messaging weekly.",
+    links: [
       {
-        name: "Launchroom",
-        description: "Community playbooks for early-stage launches.",
+        label: "YouTube",
+        url: "https://youtube.com/@danipark",
+      },
+      {
+        label: "TikTok",
+        url: "https://tiktok.com/@dani.builds",
+      },
+      {
+        label: "Instagram",
+        url: "https://instagram.com/dani.park",
       },
     ],
-  },
-  {
-    id: "diego-ramirez",
-    name: "Diego Ramirez",
-    role: "AI Engineer",
-    skills: ["Python", "LLMs", "Retrieval", "MLOps"],
-    location: "Mexico City, MX",
-    timezone: "UTC-6 (CST)",
-    school: "UNAM — Computer Engineering",
-    highlights: [
-      "Built retrieval stack for fintech",
-      "Optimizes inference cost",
-      "Publishes on applied ML",
-    ],
-    wantsToBuild:
-      "Vertical AI copilots for regulated industries with strong UX.",
-    portfolio: {
-      github: "https://github.com/diegorm",
-      instagram: "https://instagram.com/diego.ai",
-      website: "https://diegorm.ai",
-    },
+    avatar: "/images/avatars/dani-park.svg",
+    heroImage: "/images/heroes/dani-park.svg",
     projects: [
       {
-        name: "QueryForge",
-        description: "Semantic search engine for legal teams.",
+        id: "founder-breakdowns",
+        name: "Founder Breakdowns",
+        description: "YouTube series dissecting YC launch tactics.",
+        image: "/images/projects/dani-breakdowns.svg",
+        link: {
+          label: "YouTube",
+          url: "https://youtube.com/watch?v=founderbreakdowns",
+        },
+        metrics: [
+          { label: "views", value: "1.2M" },
+          { label: "likes", value: "48k" },
+        ],
       },
-    ],
-  },
-  {
-    id: "olivia-kim",
-    name: "Olivia Kim",
-    role: "Creative Technologist",
-    skills: ["Frontend", "Motion", "WebGL", "Brand storytelling"],
-    location: "Seoul, KR",
-    timezone: "UTC+9 (KST)",
-    school: "KAIST — Media Lab",
-    highlights: [
-      "Creates immersive product launches",
-      "Blends code + storytelling",
-      "Works fast with founders",
-    ],
-    wantsToBuild:
-      "A live studio for product marketing assets generated in hours.",
-    portfolio: {
-      github: "https://github.com/oliviakim",
-      instagram: "https://instagram.com/olivia.makes",
-      website: "https://oliviakim.studio",
-    },
-    projects: [
       {
-        name: "Signal Studio",
-        description: "Interactive landing pages for hardware startups.",
+        id: "build-clips",
+        name: "Build-in-Public Clips",
+        description: "Short-form sprint recaps for builders.",
+        image: "/images/projects/dani-buildclips.svg",
+        link: {
+          label: "TikTok",
+          url: "https://tiktok.com/@dani.builds/video/123",
+        },
+        metrics: [
+          { label: "views", value: "820k" },
+          { label: "likes", value: "66k" },
+        ],
+      },
+      {
+        id: "product-teardowns",
+        name: "Product Teardowns",
+        description: "IG carousel series on product storytelling.",
+        image: "/images/projects/dani-teardown.svg",
+        link: {
+          label: "Instagram",
+          url: "https://instagram.com/p/product-teardowns",
+        },
+        metrics: [
+          { label: "saves", value: "21k" },
+          { label: "likes", value: "31k" },
+        ],
+      },
+      {
+        id: "launch-week",
+        name: "Launch Week Series",
+        description: "7-day creator sprint coverage + playbook.",
+        image: "/images/projects/dani-launchweek.svg",
+        link: {
+          label: "YouTube",
+          url: "https://youtube.com/watch?v=launchweek",
+        },
+        metrics: [
+          { label: "views", value: "610k" },
+          { label: "subs", value: "+18k" },
+        ],
       },
     ],
   },

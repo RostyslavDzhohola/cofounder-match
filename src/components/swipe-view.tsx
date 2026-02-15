@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { profiles, type Profile } from "@/data/profiles";
 import { Badge } from "@/components/ui/badge";
@@ -12,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function SwipeView() {
   const [index, setIndex] = useState(0);
@@ -30,139 +31,189 @@ export default function SwipeView() {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-semibold">Swipe co-founder profiles</h1>
-        <p className="text-muted-foreground">
-          Swipe left to pass. Swipe right to match and start a 7-day sprint.
-        </p>
-      </div>
+    <div className="space-y-10">
+      <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="space-y-5">
+          <Badge className="w-fit" variant="secondary">
+            YC-style founder matching
+          </Badge>
+          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            Swipe on shipped work. Match on momentum.
+          </h1>
+          <p className="text-muted-foreground">
+            CoFounder Match is a project-first network. See real portfolios,
+            swipe to align, and run a 7-day sprint before deciding to cofound.
+          </p>
+          <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+            <span>3 archetypes live.</span>
+            <span>•</span>
+            <span>Project galleries front and center.</span>
+            <span>•</span>
+            <span>No fluff, just proof.</span>
+          </div>
+        </div>
 
-      {current ? (
-        <div className="relative mx-auto max-w-xl">
-          {nextProfile && (
-            <Card className="absolute inset-0 z-0 translate-x-3 translate-y-3 border-dashed p-6 opacity-60">
-              <div className="space-y-3">
-                <p className="text-sm text-muted-foreground">Up next</p>
-                <h3 className="text-lg font-semibold">{nextProfile.name}</h3>
+        {current ? (
+          <div className="relative">
+            {nextProfile && (
+              <Card className="absolute inset-0 z-0 translate-x-3 translate-y-3 border-dashed p-6 opacity-40">
+                <div className="space-y-3">
+                  <p className="text-sm text-muted-foreground">Up next</p>
+                  <h3 className="text-lg font-semibold">{nextProfile.name}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {nextProfile.role}
+                  </p>
+                </div>
+              </Card>
+            )}
+
+            <Card className="relative z-10 overflow-hidden border p-0">
+              <div className="relative h-52">
+                <Image
+                  src={current.heroImage}
+                  alt={`${current.name} hero`}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+              </div>
+
+              <div className="relative space-y-5 px-6 pb-6">
+                <div className="-mt-10 flex flex-wrap items-end justify-between gap-4">
+                  <div className="flex items-end gap-4">
+                    <Avatar className="h-16 w-16 border-4 border-background">
+                      <AvatarImage src={current.avatar} alt={current.name} />
+                      <AvatarFallback>
+                        {current.name
+                          .split(" ")
+                          .map((part) => part[0])
+                          .join("")}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h2 className="text-2xl font-semibold">
+                        {current.name}
+                      </h2>
+                      <p className="text-sm text-muted-foreground">
+                        {current.role}
+                      </p>
+                    </div>
+                  </div>
+                  <Badge variant="outline">{current.availability}</Badge>
+                </div>
+
                 <p className="text-sm text-muted-foreground">
-                  {nextProfile.role}
+                  {current.headline}
                 </p>
+
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <Badge variant="secondary">{current.location}</Badge>
+                  <Badge variant="outline">{current.timezone}</Badge>
+                  <Badge variant="outline">{current.school}</Badge>
+                </div>
+
+                <div>
+                  <p className="text-sm font-medium">Past projects</p>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    {current.projects.map((project) => (
+                      <a
+                        key={project.id}
+                        className="group rounded-2xl border border-border/70 bg-background/80 p-3 transition hover:border-foreground/20"
+                        href={project.link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                          <Image
+                            src={project.image}
+                            alt={project.name}
+                            fill
+                            className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                          />
+                        </div>
+                        <div className="mt-3 space-y-1">
+                          <div className="flex items-center justify-between gap-2">
+                            <p className="text-sm font-semibold">
+                              {project.name}
+                            </p>
+                            <span className="text-xs text-muted-foreground">
+                              {project.link.label}
+                            </span>
+                          </div>
+                          <p className="text-xs text-muted-foreground">
+                            {project.description}
+                          </p>
+                          {project.metrics && (
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {project.metrics.map((metric) => (
+                                <span
+                                  key={`${project.id}-${metric.label}`}
+                                  className="rounded-full border border-border/70 px-2 py-0.5 text-[11px] text-muted-foreground"
+                                >
+                                  {metric.value} {metric.label}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-sm font-medium">What I want to build</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {current.wantsToBuild}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-3 text-sm">
+                  {current.links.map((link) => (
+                    <a
+                      key={link.url}
+                      className="text-primary underline"
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => handleSwipe("left")}
+                  >
+                    Pass
+                  </Button>
+                  <Button className="w-full" onClick={() => handleSwipe("right")}>
+                    Match
+                  </Button>
+                </div>
+
+                <Button asChild variant="ghost" className="w-full">
+                  <Link href={`/profile/${current.id}`}>View full profile</Link>
+                </Button>
               </div>
             </Card>
-          )}
-          <Card className="relative z-10 space-y-5 p-6">
-            <div className="flex items-center gap-4">
-              <Avatar className="h-14 w-14">
-                <AvatarFallback>
-                  {current.name
-                    .split(" ")
-                    .map((part) => part[0])
-                    .join("")}
-                </AvatarFallback>
-              </Avatar>
-              <div>
-                <h2 className="text-2xl font-semibold">{current.name}</h2>
-                <p className="text-sm text-muted-foreground">{current.role}</p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary">{current.location}</Badge>
-              <Badge variant="outline">{current.timezone}</Badge>
-              <Badge variant="outline">{current.school}</Badge>
-            </div>
-
-            <div>
-              <p className="text-sm font-medium">Skills</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {current.skills.map((skill) => (
-                  <Badge key={skill} variant="secondary">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <p className="text-sm font-medium">Highlights</p>
-              <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
-                {current.highlights.map((item) => (
-                  <li key={item}>• {item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-sm font-medium">What I want to build</p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {current.wantsToBuild}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3 text-sm">
-              {current.portfolio.github && (
-                <a
-                  className="text-primary underline"
-                  href={current.portfolio.github}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </a>
-              )}
-              {current.portfolio.website && (
-                <a
-                  className="text-primary underline"
-                  href={current.portfolio.website}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Portfolio
-                </a>
-              )}
-              {current.portfolio.instagram && (
-                <a
-                  className="text-primary underline"
-                  href={current.portfolio.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Instagram
-                </a>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => handleSwipe("left")}
-              >
-                Pass
-              </Button>
-              <Button className="w-full" onClick={() => handleSwipe("right")}
-              >
-                Match
-              </Button>
-            </div>
-
-            <Button asChild variant="ghost" className="w-full">
-              <Link href={`/profile/${current.id}`}>View full profile</Link>
+          </div>
+        ) : (
+          <Card className="mx-auto max-w-xl p-6 text-center">
+            <h2 className="text-xl font-semibold">That’s everyone for now.</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Refresh later or revisit a profile to start a sprint.
+            </p>
+            <Button asChild className="mt-4">
+              <Link href="/">Back home</Link>
             </Button>
           </Card>
-        </div>
-      ) : (
-        <Card className="mx-auto max-w-xl p-6 text-center">
-          <h2 className="text-xl font-semibold">That’s everyone for now.</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Refresh later or revisit a profile to start a sprint.
-          </p>
-          <Button asChild className="mt-4">
-            <Link href="/">Back home</Link>
-          </Button>
-        </Card>
-      )}
+        )}
+      </section>
 
       <Dialog
         open={!!matchedProfile}
@@ -189,12 +240,12 @@ export default function SwipeView() {
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button asChild className="w-full">
-                  <Link href="/sprint">Start 7-day sprint</Link>
+                  <Link href={`/profile/${matchedProfile.id}`}>
+                    Open profile
+                  </Link>
                 </Button>
                 <Button asChild variant="outline" className="w-full">
-                  <Link href={`/profile/${matchedProfile.id}`}>
-                    View profile
-                  </Link>
+                  <Link href="/">Keep swiping</Link>
                 </Button>
               </div>
             </div>
