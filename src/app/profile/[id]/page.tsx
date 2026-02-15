@@ -57,7 +57,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
                 </AvatarFallback>
               </Avatar>
               <div>
-                <h1 className="text-3xl font-semibold">{profile.name}</h1>
+                <h1 className="font-display text-3xl font-semibold">{profile.name}</h1>
                 <p className="text-sm text-muted-foreground">{profile.role}</p>
               </div>
             </div>
@@ -75,7 +75,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-4">
               <div>
-                <h2 className="text-lg font-semibold">What I want to build</h2>
+                <h2 className="font-display text-lg font-semibold">What I want to build</h2>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {profile.wantsToBuild}
                 </p>
@@ -114,7 +114,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
 
       <Card className="space-y-4 p-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Past projects</h2>
+          <h2 className="font-display text-lg font-semibold">Past projects</h2>
           <Badge variant="outline">{profile.projects.length} projects</Badge>
         </div>
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pr-2">
@@ -164,7 +164,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
 
       <Card className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-semibold">Start a sprint</h2>
+          <h2 className="font-display text-lg font-semibold">Start a sprint</h2>
           <p className="text-sm text-muted-foreground">
             Controls live here. Invite this founder into a 7-day build to test
             chemistry before cofounding.

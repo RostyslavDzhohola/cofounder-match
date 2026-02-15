@@ -37,7 +37,7 @@ export default function SwipeView() {
           <Badge className="w-fit" variant="secondary">
             YC-style founder matching
           </Badge>
-          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
             Swipe on shipped work. Match on momentum.
           </h1>
           <p className="text-muted-foreground">
@@ -92,7 +92,7 @@ export default function SwipeView() {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <h2 className="text-2xl font-semibold">
+                      <h2 className="font-display text-2xl font-semibold">
                         {current.name}
                       </h2>
                       <p className="text-sm text-muted-foreground">
