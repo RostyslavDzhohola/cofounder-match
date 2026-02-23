@@ -40,7 +40,7 @@ export const profiles: Profile[] = [
     name: "Aria Lane",
     role: "Product Designer",
     headline: "Systems-first designer who turns fuzzy ideas into crisp flows.",
-    availability: "Open to a 7-day sprint",
+    availability: "Open to an open-source sprint",
     location: "San Francisco, CA",
     timezone: "UTC-8 (PST)",
     school: "RISD — Digital + Product",
@@ -221,7 +221,7 @@ export const profiles: Profile[] = [
       {
         id: "founder-breakdowns",
         name: "Founder Breakdowns",
-        description: "YouTube series dissecting YC launch tactics.",
+        description: "YouTube series dissecting startup launch tactics.",
         image: "/images/projects/dani-breakdowns.svg",
         link: {
           label: "YouTube",
@@ -263,7 +263,7 @@ export const profiles: Profile[] = [
       {
         id: "launch-week",
         name: "Launch Week Series",
-        description: "7-day creator sprint coverage + playbook.",
+        description: "Open-source creator sprint coverage + playbook.",
         image: "/images/projects/dani-launchweek.svg",
         link: {
           label: "YouTube",

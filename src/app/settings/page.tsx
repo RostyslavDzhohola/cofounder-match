@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { OnboardingForm } from "@/components/profile/onboarding-form";
 
-export default function SettingsRedirect() {
-  redirect("/");
+export default function SettingsPage() {
+  return <OnboardingForm mode="settings" />;
 }

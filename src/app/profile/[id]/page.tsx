@@ -28,7 +28,7 @@ export default function ProfileDetailPage({ params }: PageProps) {
           </span>
         </div>
         <Button asChild variant="outline" size="sm">
-          <Link href="/">Back to swipe</Link>
+          <Link href="/swipe">Back to swipe</Link>
         </Button>
       </div>
 
@@ -166,8 +166,8 @@ export default function ProfileDetailPage({ params }: PageProps) {
         <div>
           <h2 className="font-display text-lg font-semibold">Start a sprint</h2>
           <p className="text-sm text-muted-foreground">
-            Controls live here. Invite this founder into a 7-day build to test
-            chemistry before cofounding.
+            Controls live here. Invite this founder into an open-source build
+            sprint to test chemistry before cofounding.
           </p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
